@@ -6,7 +6,9 @@
         <el-aside width="200px">
           <side-menu/>
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -70,6 +72,8 @@ export default class Index extends Vue {
       color: #333;
       text-align: center;
       line-height: 160px;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
   }
 </style>
