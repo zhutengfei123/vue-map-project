@@ -9,38 +9,9 @@
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-submenu index="1">
-        <template slot="title"><i class="el-icon-location"></i>导航一</template>
-        <el-menu-item index="content1">用户列表</el-menu-item>
-        <el-menu-item index="content2">商家列表</el-menu-item>
-        <el-menu-item index="content3">食品列表</el-menu-item>
-        <el-menu-item index="content4">订单列表</el-menu-item>
-      </el-submenu>
-      <el-submenu index="2">
-        <template slot="title"><i class="el-icon-menu"></i>导航二</template>
-        <el-menu-item index="shopList">商家列表</el-menu-item>
-        <el-submenu index="4">
-          <template slot="title"><i class="el-icon-setting"></i>选项一</template>
-          <el-menu-item index="">用户列表</el-menu-item>
-          <el-menu-item index="">商家列表</el-menu-item>
-          <el-menu-item index="">食品列表</el-menu-item>
-          <el-menu-item index="">订单列表</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="">订单列表</el-menu-item>
-        <el-menu-item index="">管理员列表</el-menu-item>
-      </el-submenu>
-      <el-submenu index="3">
-        <template slot="title"><i class="el-icon-document"></i>导航三</template>
-        <el-menu-item index="">用户列表</el-menu-item>
-        <el-menu-item index="">食品列表</el-menu-item>
-        <el-menu-item index="">订单列表</el-menu-item>
-      </el-submenu>
-      <el-submenu index="4">
-        <template slot="title"><i class="el-icon-setting"></i>导航四</template>
-        <el-menu-item index="">用户列表</el-menu-item>
-        <el-menu-item index="">商家列表</el-menu-item>
-        <el-menu-item index="">食品列表</el-menu-item>
-        <el-menu-item index="">订单列表</el-menu-item>
+      <el-submenu :key="index" v-for="(item,index) in menuList" :index="index+''">
+        <template slot="title"><i :class="item.icon"></i>{{item.title}}</template>
+        <el-menu-item :key="i" v-for="(subItem,i) in item.subMenuList" :index="subItem.router"><i :class="item.icon"></i>{{subItem.title}}</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
@@ -48,6 +19,40 @@
 <script>
 import { Vue } from 'vue-property-decorator'
 export default class HelloWorld extends Vue {
+  menuList = [
+    { title: '导航1',
+      icon: 'el-icon-location',
+      subMenuList: [
+        { title: '选项1', icon: 'el-icon-location', router: 'content1' },
+        { title: '选项2', icon: 'el-icon-location', router: 'content2' },
+        { title: '选项3', icon: 'el-icon-location', router: 'content3' },
+        { title: '选项4', icon: 'el-icon-location', router: 'content4' }
+      ]
+    },
+    { title: '导航1',
+      icon: 'el-icon-location',
+      subMenuList: [
+        { title: '选项1', icon: 'el-icon-location', router: 'content5' },
+        { title: '选项2', icon: 'el-icon-location', router: 'content6' },
+        { title: '选项3', icon: 'el-icon-location', router: 'content7' }
+      ]
+    },
+    { title: '导航1',
+      icon: 'el-icon-location',
+      subMenuList: [
+        { title: '选项1', icon: 'el-icon-location', router: 'content8' },
+        { title: '选项2', icon: 'el-icon-location', router: 'content9' },
+        { title: '选项3', icon: 'el-icon-location', router: 'content10' },
+        { title: '选项4', icon: 'el-icon-location', router: 'content11' }
+      ]
+    },
+    { title: '导航1',
+      icon: 'el-icon-location',
+      subMenuList: [
+        { title: '选项1', icon: 'el-icon-location', router: 'content12' }
+      ]
+    }
+  ]
   handleOpen (key, keyPath) {
     console.log(key, keyPath)
   }
