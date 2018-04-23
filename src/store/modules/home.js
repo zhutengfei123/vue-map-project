@@ -1,10 +1,11 @@
 import axios from '../../js/axios'
+import Api from '../../api'
 const state = {
   initData: {}
 }
 const actions = {
   async init ({commit, rootState}, params) {
-    const { success, msg, data } = await axios.post('/new_report/income/incomeLedger.htm', params)
+    const { success, msg, data } = await axios.post(Api.searchReportForm, params)
     if (success === 'false') {
       return msg
     } else {
