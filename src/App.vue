@@ -7,7 +7,7 @@
 import { Vue } from 'vue-property-decorator'
 export default class App extends Vue {}
 </script>
-<style>
+<style lang="less">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,5 +16,9 @@ export default class App extends Vue {}
   color: #2c3e50;
   width: 100%;
   height: 100%;
+  .el-main {
+    line-height: initial;
+    text-align: initial;
+  }
 }
 </style>

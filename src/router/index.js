@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// const SideMenu = () => import('@/components/sideMenu')
 const Index = () => import('@/views')
 const Content1 = () => import('@/views/content1')
 const Content2 = () => import('@/views/content2')
