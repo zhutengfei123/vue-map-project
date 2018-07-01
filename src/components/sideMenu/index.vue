@@ -29,7 +29,7 @@ export default class HelloWorld extends Vue {
         { title: '选项4', icon: 'el-icon-location', router: 'content4' }
       ]
     },
-    { title: '导航1',
+    { title: '导航2',
       icon: 'el-icon-location',
       subMenuList: [
         { title: '选项1', icon: 'el-icon-location', router: 'content5' },
@@ -37,7 +37,7 @@ export default class HelloWorld extends Vue {
         { title: '选项3', icon: 'el-icon-location', router: 'content7' }
       ]
     },
-    { title: '导航1',
+    { title: '导航3',
       icon: 'el-icon-location',
       subMenuList: [
         { title: '选项1', icon: 'el-icon-location', router: 'content8' },
@@ -46,7 +46,7 @@ export default class HelloWorld extends Vue {
         { title: '选项4', icon: 'el-icon-location', router: 'content11' }
       ]
     },
-    { title: '导航1',
+    { title: '导航4',
       icon: 'el-icon-location',
       subMenuList: [
         { title: '选项1', icon: 'el-icon-location', router: 'content12' }
@@ -54,10 +54,10 @@ export default class HelloWorld extends Vue {
     }
   ]
   handleOpen (key, keyPath) {
-    console.log(key, keyPath)
+    console.log('1', key, keyPath)
   }
   handleClose (key, keyPath) {
-    console.log(key, keyPath)
+    console.log('2', key, keyPath)
   }
 }
 </script>

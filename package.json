@@ -60,6 +60,7 @@
     "shelljs": "^0.7.6",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
+    "vue-baidu-map": "^0.21.10",
     "vue-class-component": "^6.2.0",
     "vue-loader": "^13.3.0",
     "vue-property-decorator": "^6.0.0",
