@@ -1,7 +1,7 @@
 <template>
   <div class="left-panel-index">
     <h1>left-panel</h1>
-    <chart :options="polar" width="20%"></chart>
+    <chart :options="polar" auto-resize="true" class="pie-chart"></chart>
   </div>
 </template>
 <script>
@@ -58,6 +58,8 @@ export default class Index extends Vue {
 <style lang="less">
   .left-panel-index {
     width: 100%;
-    background-image: url('../assets/img/title.png');
+    .pie-chart {
+        width: 100%;
+    }
   }
 </style>
