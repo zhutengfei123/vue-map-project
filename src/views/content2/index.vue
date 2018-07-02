@@ -1,6 +1,6 @@
 <template>
   <div class="content2-index">
-    <baidu-map class="map" center="北京"></baidu-map>
+    <baidu-map class="map" center="太原市"></baidu-map>
   </div>
 </template>
 <script>
