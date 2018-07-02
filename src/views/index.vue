@@ -177,7 +177,7 @@ export default class Index extends Vue {
       top: 120px;
       bottom: 120px;
       background: red;
-      width: 300px;
+      width: 20%;
     }
   }
 </style>
