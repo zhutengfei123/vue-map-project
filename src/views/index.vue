@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index" v-loading="loading">
     <baidu-map class="map" center="太原市" :scroll-wheel-zoom='true' :mapStyle="mapStyle">
       <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
       <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
@@ -26,6 +26,13 @@ const IndexState = namespace('index', State)
 export default class Index extends Vue {
   @IndexAction init
   @IndexState initData
+  loading = false
+  created () {
+    this.loading = true
+    setTimeout(() => {
+      this.loading = false
+    }, 2000)
+  }
   points = points
   mapStyle = {
     styleJson: [
@@ -170,7 +177,6 @@ export default class Index extends Vue {
       bottom: 120px;
       background: red;
       width: 300px;
-      // height: 800px;
     }
   }
 </style>
