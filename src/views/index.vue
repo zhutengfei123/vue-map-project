@@ -4,6 +4,7 @@
       <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
       <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
       <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
+      <bm-marker v-for="item in points" :position="item" :dragging="true" :icon="{url: '/src/imgs/title.png', size: {width: 60, height: 60}}"></bm-marker>
       <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" ></bm-point-collection>
     </baidu-map>
     <left-panel class="left-panel"/>
@@ -146,8 +147,8 @@ export default class Index extends Vue {
     height: 100%;
     width: 100%;
     .map {
-      padding: 4% 0;
-      height: 92%;
+      padding: 2% 0;
+      height: 94%;
       width: 100%;
       background-color: #50738a;
     }
@@ -162,6 +163,7 @@ export default class Index extends Vue {
       width: 60%;
       h1 {
         background-color: #475f6fb3;
+        background-size: 100% 100%;
         background-image: url('../imgs/title.png');
       }
     }
@@ -178,6 +180,7 @@ export default class Index extends Vue {
       bottom: 120px;
       background: red;
       width: 20%;
+      background: #000000b3;
     }
   }
 </style>
