@@ -106,10 +106,9 @@ export default class Index extends Vue {
       }
     ]
   }
-
-  methods =  {
+  methods = {
     clickHandler (e) {
-      alert(`单击点${e.point.name}的坐标为：${e.point.lng}, ${e.point.lat}`);
+      alert(`单击点${e.point.name}的坐标为：${e.point.lng}, ${e.point.lat}`)
     }
   }
   // created () {
@@ -152,10 +151,10 @@ export default class Index extends Vue {
       top: 0;
       height: 80px;
       background: blue;
-      left: 100px; 
-      right: 100px; 
-      margin-left: auto; 
-      margin-right: auto; 
+      left: 100px;
+      right: 100px;
+      margin-left: auto;
+      margin-right: auto;
       opacity:0.3;
     }
     .left-panel {
