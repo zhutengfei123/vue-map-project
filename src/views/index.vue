@@ -1,27 +1,32 @@
 <template>
   <div class="index">
-    <baidu-map class="map" center="北京" :scroll-wheel-zoom='true' :mapStyle="mapStyle">
+    <baidu-map class="map" center="太原市" :scroll-wheel-zoom='true' :mapStyle="mapStyle">
       <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
       <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
       <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
+      <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" ></bm-point-collection>
     </baidu-map>
     <left-panel class="left-panel"/>
     <right-panel class="right-panel"/>
+    <top-panel class="top-panel"/>
   </div>
 </template>
 <script>
 import { Vue, Component } from 'vue-property-decorator'
 import {State, Action, namespace} from 'vuex-class'
+import { points } from '../js/constants.js'
 const leftPanel = () => import('@/components/leftPanel')
 const RightPanel = () => import('@/components/rightPanel')
+const TopPanel = () => import('@/components/topPanel')
 const IndexAction = namespace('index', Action)
 const IndexState = namespace('index', State)
 @Component({
-  components: { leftPanel, RightPanel }
+  components: { leftPanel, RightPanel, TopPanel }
 })
 export default class Index extends Vue {
   @IndexAction init
   @IndexState initData
+  points = points
   mapStyle = {
     styleJson: [
       {
@@ -101,6 +106,12 @@ export default class Index extends Vue {
       }
     ]
   }
+
+  methods =  {
+    clickHandler (e) {
+      alert(`单击点${e.point.name}的坐标为：${e.point.lng}, ${e.point.lat}`);
+    }
+  }
   // created () {
   //   const params = {
   //     shopperId: '',
@@ -135,6 +146,18 @@ export default class Index extends Vue {
       height: 100%;
       width: 100%;
     }
+
+    .top-panel {
+      position: absolute;
+      top: 0;
+      height: 80px;
+      background: blue;
+      left: 100px; 
+      right: 100px; 
+      margin-left: auto; 
+      margin-right: auto; 
+      opacity:0.3;
+    }
     .left-panel {
       left: 50px;
     }
@@ -142,12 +165,13 @@ export default class Index extends Vue {
       right: 50px;
     }
     .left-panel, .right-panel {
+      // opacity:0.3;
       position: absolute;
-      top: 50%;
-      margin-top: -400px;
+      top: 120px;
+      bottom: 120px;
       background: red;
-      width: 400px;
-      height: 800px;
+      width: 300px;
+      // height: 800px;
     }
   }
 </style>

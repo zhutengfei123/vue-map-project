@@ -7,9 +7,12 @@ import Vuex from 'vuex'
 import router from './router'
 import store from './store'
 import BaiduMap from 'vue-baidu-map'
+import ECharts from 'vue-echarts/components/ECharts'
+import 'echarts'
 Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(ElementUI)
+Vue.component('chart', ECharts)
 Vue.use(BaiduMap, {
   /* Visit http://lbsyun.baidu.com/apiconsole/key for details about app key. */
   ak: 'YakZkrfBCcDfLPgvOdObTqXDbbEy1EYr'
