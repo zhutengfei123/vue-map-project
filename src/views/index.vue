@@ -5,15 +5,19 @@
       <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
       <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
     </baidu-map>
+    <left-panel class="left-panel"/>
+    <right-panel class="right-panel"/>
   </div>
 </template>
 <script>
 import { Vue, Component } from 'vue-property-decorator'
 import {State, Action, namespace} from 'vuex-class'
+const leftPanel = () => import('@/components/leftPanel')
+const RightPanel = () => import('@/components/rightPanel')
 const IndexAction = namespace('index', Action)
 const IndexState = namespace('index', State)
 @Component({
-  // components: { SideMenu }
+  components: { leftPanel, RightPanel }
 })
 export default class Index extends Vue {
   @IndexAction init
@@ -124,11 +128,26 @@ export default class Index extends Vue {
 </script>
 <style lang="less">
   .index {
+    position: relative;
     height: 100%;
     width: 100%;
     .map {
       height: 100%;
       width: 100%;
+    }
+    .left-panel {
+      left: 50px;
+    }
+    .right-panel {
+      right: 50px;
+    }
+    .left-panel, .right-panel {
+      position: absolute;
+      top: 50%;
+      margin-top: -400px;
+      background: red;
+      width: 400px;
+      height: 800px;
     }
   }
 </style>
