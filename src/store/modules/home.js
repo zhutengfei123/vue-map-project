@@ -1,7 +1,9 @@
 import axios from '../../js/axios'
 import Api from '../../api'
 const state = {
-  initData: {}
+  initData: {},
+  numData: null,
+  memberChartInfo: {}
 }
 const actions = {
   async init ({commit, rootState}, params) {
@@ -12,17 +14,29 @@ const actions = {
       commit('getInitData', data)
     }
   },
-
   async getNum ({commit, rootState}, params) {
-    const data = await axios.get('http://9ji-tech.com:8880/joreport/data/num')
-    if (typeof data === 'number') {
-      // 成功
+    const { result, status: {code, msg} } = await axios.get('/api/joreport/data/num', {'params': params})
+    if (code === '00000') {
+      commit('getNumData', result)
+    } else {
+      return msg
+    }
+  },
+  async getMemberChartInfo ({commit, rootState}, params) {
+    const { result, status: {code, msg} } = await axios.get('/api/joreport/data/people', {'params': params})
+    if (code === '00000') {
+      commit('getMemberChartInfo', result)
+    } else {
+      return msg
     }
   }
 }
 const mutations = {
   getInitData (state, data) {
     state.initData = data
+  },
+  getNumData (state, data) {
+    state.numData = data
   }
 }
 export default {

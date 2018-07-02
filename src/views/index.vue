@@ -25,14 +25,12 @@ const IndexState = namespace('index', State)
 })
 export default class Index extends Vue {
   @IndexAction init
+  @IndexAction getNum
+  @IndexAction getMemberChartInfo
   @IndexState initData
+  @IndexState numData
+  @IndexState memberChartInfo
   loading = false
-  created () {
-    this.loading = true
-    setTimeout(() => {
-      this.loading = false
-    }, 2000)
-  }
   points = points
   mapStyle = {
     styleJson: [
@@ -113,34 +111,41 @@ export default class Index extends Vue {
       }
     ]
   }
-  methods = {
-    clickHandler (e) {
-      alert(`单击点${e.point.name}的坐标为：${e.point.lng}, ${e.point.lat}`)
-    }
+  created () {
+    this.loading = true
+    setTimeout(() => {
+      this.loading = false
+    }, 2000)
+    this.initGetNum()
+    this.initMemberChartInfo()
   }
-  // created () {
-  //   const params = {
-  //     shopperId: '',
-  //     userType: 'parentShop',
-  //     shopperPid: 9355,
-  //     payModels: '0,1',
-  //     startTime: '2018-04-01',
-  //     endTime: '2018-04-17',
-  //     shopperIds: '',
-  //     reportType: 'date',
-  //     pageNum: 1,
-  //     pageSize: 20
-  //   }
-  //   this.init(params).then(msg => {
-  //     if (msg) {
-  //       this.$message.warning(msg)
-  //     } else {
-  //       console.log('initData', this.initData)
-  //     }
-  //   }).catch(error => {
-  //     this.$message.error(error)
-  //   })
-  // }
+  initMemberChartInfo () {
+    const params = {}
+    this.getMemberChartInfo(params).then(msg => {
+      if (msg) {
+        this.$message.warning(msg)
+      } else {
+        console.log('memberChartInfo', this.memberChartInfo)
+      }
+    }).catch(error => {
+      this.$message.error(error)
+    })
+  }
+  clickHandler (e) {
+    alert(`单击点${e.point.name}的坐标为：${e.point.lng}, ${e.point.lat}`)
+  }
+  initGetNum () {
+    const params = {}
+    this.getNum(params).then(msg => {
+      if (msg) {
+        this.$message.warning(msg)
+      } else {
+        console.log('numData', this.numData)
+      }
+    }).catch(error => {
+      this.$message.error(error)
+    })
+  }
 }
 </script>
 <style lang="less">
