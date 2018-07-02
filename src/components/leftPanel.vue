@@ -1,7 +1,7 @@
 <template>
   <div class="left-panel-index">
     <h1>left-panel</h1>
-    <chart :options="polar" auto-resize="true" class="pie-chart"></chart>
+    <chart :options="polar" :auto-resize="true" class="pie-chart"></chart>
   </div>
 </template>
 <script>

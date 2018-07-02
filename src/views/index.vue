@@ -151,7 +151,6 @@ export default class Index extends Vue {
       width: 100%;
       background-color: #50738a;
     }
-
     .top-panel {
       position: absolute;
       top: 0;
