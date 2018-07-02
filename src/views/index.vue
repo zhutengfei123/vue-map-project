@@ -121,12 +121,8 @@ export default class Index extends Vue {
   }
   initMemberChartInfo () {
     const params = {}
-    this.getMemberChartInfo(params).then(msg => {
-      if (msg) {
-        this.$message.warning(msg)
-      } else {
-        console.log('memberChartInfo', this.memberChartInfo)
-      }
+    this.getMemberChartInfo(params).then(() => {
+      console.log('memberChartInfo', this.memberChartInfo)
     }).catch(error => {
       this.$message.error(error)
     })
@@ -136,12 +132,8 @@ export default class Index extends Vue {
   }
   initGetNum () {
     const params = {}
-    this.getNum(params).then(msg => {
-      if (msg) {
-        this.$message.warning(msg)
-      } else {
-        console.log('numData', this.numData)
-      }
+    this.getNum(params).then(() => {
+      console.log('numData', this.numData)
     }).catch(error => {
       this.$message.error(error)
     })
