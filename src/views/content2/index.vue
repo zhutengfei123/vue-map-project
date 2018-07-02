@@ -1,6 +1,10 @@
 <template>
   <div class="content2-index">
-    <baidu-map class="map" center="北京"></baidu-map>
+    <baidu-map class="map" center="北京">
+      <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
+      <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
+      <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
+    </baidu-map>
   </div>
 </template>
 <script>

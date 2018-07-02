@@ -2,6 +2,7 @@
   <div class="side-menu-index">
     <el-menu
       router
+      :collapse="collapse"
       default-active="1"
       class="el-menu-vertical-demo"
       @open="handleOpen"
@@ -19,6 +20,7 @@
 <script>
 import { Vue } from 'vue-property-decorator'
 export default class HelloWorld extends Vue {
+  collapse = false
   menuList = [
     { title: '导航1',
       icon: 'el-icon-location',
