@@ -1,13 +1,19 @@
 <template>
-  <div class="left-panel-index">
-    <h1>left-panel</h1>
-    <chart :options="polar" :auto-resize="true" class="pie-chart"></chart>
-  </div>
+  <transition name="el-zoom-in-left">
+    <div v-show="showLeftBox" class="left-panel-index">
+      <h1>left-panel</h1>
+      <chart :options="polar" :auto-resize="true" class="pie-chart"></chart>
+      <el-button class="my-btn1" @click="showLeftBox=!showLeftBox">
+        <i class="el-icon-arrow-right"></i>
+      </el-button>
+    </div>
+  </transition>
 </template>
 <script>
 import { Vue } from 'vue-property-decorator'
 
 export default class Index extends Vue {
+  showLeftBox = true
   polar = {
     grid: {width: '20%'},
     tooltip: {
