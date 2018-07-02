@@ -1,30 +1,102 @@
 <template>
   <div class="index">
-    <el-container>
-      <el-header>Header</el-header>
-      <el-container>
-        <el-aside width="200px">
-          <side-menu/>
-        </el-aside>
-        <el-main>
-          <router-view></router-view>
-        </el-main>
-      </el-container>
-    </el-container>
+    <baidu-map class="map" center="北京" :scroll-wheel-zoom='true' :mapStyle="mapStyle">
+      <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
+      <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
+      <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
+    </baidu-map>
   </div>
 </template>
 <script>
 import { Vue, Component } from 'vue-property-decorator'
 import {State, Action, namespace} from 'vuex-class'
-const SideMenu = () => import('@/components/sideMenu')
 const IndexAction = namespace('index', Action)
 const IndexState = namespace('index', State)
 @Component({
-  components: { SideMenu }
+  // components: { SideMenu }
 })
 export default class Index extends Vue {
   @IndexAction init
   @IndexState initData
+  mapStyle = {
+    styleJson: [
+      {
+        'featureType': 'land',
+        'elementType': 'geometry',
+        'stylers': {'color': '#212121'}
+      },
+      {
+        'featureType': 'building',
+        'elementType': 'geometry',
+        'stylers': {'color': '#2b2b2b'}
+      },
+      {
+        'featureType': 'highway',
+        'elementType': 'all',
+        'stylers': {'lightness': -42, 'saturation': -91}
+      },
+      {
+        'featureType': 'arterial',
+        'elementType': 'geometry',
+        'stylers': {'lightness': -77, 'saturation': -94}
+      },
+      {
+        'featureType': 'green',
+        'elementType': 'geometry',
+        'stylers': {'color': '#1b1b1b'}
+      },
+      {
+        'featureType': 'water',
+        'elementType': 'geometry',
+        'stylers': {'color': '#181818'}
+      },
+      {
+        'featureType': 'subway',
+        'elementType': 'geometry.stroke',
+        'stylers': {'color': '#181818'}
+      },
+      {
+        'featureType': 'railway',
+        'elementType': 'geometry',
+        'stylers': {'lightness': -52}
+      },
+      {
+        'featureType': 'all',
+        'elementType': 'labels.text.stroke',
+        'stylers': {'color': '#313131'}
+      },
+      {
+        'featureType': 'all',
+        'elementType': 'labels.text.fill',
+        'stylers': {'color': '#8b8787'}
+      },
+      {
+        'featureType': 'manmade',
+        'elementType': 'geometry',
+        'stylers': {'color': '#1b1b1b'}
+      },
+      {
+        'featureType': 'local',
+        'elementType': 'geometry',
+        'stylers': {'lightness': -75, 'saturation': -91}
+      },
+      {
+        'featureType': 'subway',
+        'elementType': 'geometry',
+        'stylers': {'lightness': -65}
+      },
+      {
+        'featureType': 'railway',
+        'elementType': 'all',
+        'stylers': {'lightness': -40}
+      },
+      {
+        'featureType': 'boundary',
+        'elementType': 'geometry',
+        'stylers': {'color': '#8b8787', 'weight': '1', 'lightness': -29}
+      }
+    ]
+  }
   // created () {
   //   const params = {
   //     shopperId: '',
@@ -53,27 +125,10 @@ export default class Index extends Vue {
 <style lang="less">
   .index {
     height: 100%;
-    .el-container {
+    width: 100%;
+    .map {
       height: 100%;
-    }
-    .el-header {
-      background-color: #B3C0D1;
-      color: #333;
-      text-align: center;
-      line-height: 60px;
-    }
-    .el-aside {
-      color: #333;
-      text-align: center;
-      line-height: 200px;
-    }
-    .el-main {
-      background-color: #E9EEF3;
-      color: #333;
-      text-align: center;
-      line-height: 160px;
-      overflow-x: hidden;
-      overflow-y: auto;
+      width: 100%;
     }
   }
 </style>

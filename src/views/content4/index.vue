@@ -1,9 +1,0 @@
-<template>
-  <div class="content4-index">
-    <h1>content4</h1>
-  </div>
-</template>
-<script>
-</script>
-<style lang="less">
-</style>
