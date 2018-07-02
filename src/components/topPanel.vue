@@ -4,5 +4,13 @@
   </div>
 </template>
 <style lang="less">
-  .top-panel-index {}
+  .top-panel-index {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+      background: url('../assets/img/title.png');
+      background-size: 100% 100%;
+    }
+  }
 </style>
