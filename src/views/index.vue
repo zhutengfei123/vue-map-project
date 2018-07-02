@@ -156,14 +156,9 @@ export default class Index extends Vue {
       position: absolute;
       top: 0;
       height: 80px;
-      // background: blue;
       color: white;
       left: 20%;
       width: 60%;
-      h1 {
-        background-color: #475f6fb3;
-        background-image: url('../imgs/title.png');
-      }
     }
     .left-panel {
       left: 2%;

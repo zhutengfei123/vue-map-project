@@ -58,5 +58,6 @@ export default class Index extends Vue {
 <style lang="less">
   .left-panel-index {
     width: 100%;
+    background-image: url('../assets/img/title.png');
   }
 </style>
