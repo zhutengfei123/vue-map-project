@@ -11,6 +11,13 @@ const actions = {
     } else {
       commit('getInitData', data)
     }
+  },
+
+  async getNum ({commit, rootState}, params) {
+    const data = await axios.get('http://9ji-tech.com:8880/joreport/data/num')
+    if (typeof data === 'number') {
+      // 成功
+    }
   }
 }
 const mutations = {
