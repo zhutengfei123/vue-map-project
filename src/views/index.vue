@@ -149,26 +149,30 @@ export default class Index extends Vue {
     height: 100%;
     width: 100%;
     .map {
-      height: 100%;
+      padding: 4% 0;
+      height: 92%;
       width: 100%;
+      background-color: #50738a;
     }
 
     .top-panel {
       position: absolute;
       top: 0;
       height: 80px;
-      background: blue;
-      left: 100px;
-      right: 100px;
-      margin-left: auto;
-      margin-right: auto;
-      opacity:0.3;
+      // background: blue;
+      color: white;
+      left: 20%;
+      width: 60%;
+      h1 {
+        background-color: #475f6fb3;
+        background-image: url('../imgs/title.png');
+      }
     }
     .left-panel {
-      left: 50px;
+      left: 2%;
     }
     .right-panel {
-      right: 50px;
+      right: 2%;
     }
     .left-panel, .right-panel {
       // opacity:0.3;
