@@ -1,19 +1,18 @@
 <template>
-  <transition name="el-zoom-in-left">
-    <div v-show="showLeftBox" class="left-panel-index">
-      <h1>left-panel</h1>
-      <chart :options="polar" :auto-resize="true" class="pie-chart"></chart>
-      <el-button class="my-btn1" @click="showLeftBox=!showLeftBox">
-        <i class="el-icon-arrow-right"></i>
-      </el-button>
-    </div>
-  </transition>
+  <div class="left-panel-index">
+    <h1>left-panel</h1>
+    <chart :options="polar" :auto-resize="true" class="pie-chart"></chart>
+    <el-button class="my-btn1" @click="$emit('changeStatus','leftBoxOffset',offset===0?-300:0)">
+      <i :class="offset===0?'el-icon-arrow-left':'el-icon-arrow-right'"></i>
+    </el-button>
+  </div>
 </template>
 <script>
-import { Vue } from 'vue-property-decorator'
-
+import { Vue, Component, Prop } from 'vue-property-decorator'
+@Component({})
 export default class Index extends Vue {
-  showLeftBox = true
+  @Prop()
+  offset
   polar = {
     grid: {width: '20%'},
     tooltip: {
@@ -58,6 +57,9 @@ export default class Index extends Vue {
         ]
       }
     ]
+  }
+  created () {
+    console.warn('ddd', this.offset)
   }
 }
 </script>

@@ -6,8 +6,12 @@
       <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
       <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" ></bm-point-collection>
     </baidu-map>
-    <left-panel class="left-panel"/>
-    <right-panel class="right-panel"/>
+    <transition name="el-zoom-in-left">
+      <left-panel :offset="leftBoxOffset" :style="`left:${leftBoxOffset}px;`" class="left-panel" @changeStatus="handleChangeStatus"/>
+    </transition>
+    <transition name="el-zoom-in-right">
+      <right-panel :offset="rightBoxOffset" :style="`right:${rightBoxOffset}px;`" class="right-panel" @changeStatus="handleChangeStatus"/>
+    </transition>
     <top-panel class="top-panel"/>
   </div>
 </template>
@@ -31,8 +35,8 @@ export default class Index extends Vue {
   @IndexState numData
   @IndexState memberChartInfo
   loading = false
-  showLeftBox = true
-  showRightBox = true
+  leftBoxOffset = -300
+  rightBoxOffset = -300
   points = points
   mapStyle = {
     styleJson: [
@@ -121,6 +125,9 @@ export default class Index extends Vue {
     this.initGetNum()
     this.initMemberChartInfo()
   }
+  handleChangeStatus (a, b) {
+    this[a] = b
+  }
   initMemberChartInfo () {
     const params = {}
     this.getMemberChartInfo(params).then(() => {
@@ -162,10 +169,10 @@ export default class Index extends Vue {
       width: 60%;
     }
     .left-panel {
-      left: 2%;
+      left: -300px;
     }
     .right-panel {
-      right: 2%;
+      right: -300px;
     }
     .left-panel, .right-panel {
       // opacity:0.3;
@@ -173,7 +180,7 @@ export default class Index extends Vue {
       top: 120px;
       bottom: 120px;
       background: red;
-      width: 20%;
+      width: 300px;
     }
     .my-btn1, .my-btn2 {
       position: absolute;

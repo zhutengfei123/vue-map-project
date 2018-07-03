@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: center;
     h1 {
-      background: url('../assets/img/title.png');
+      background: url('../../static/img/title.png');
       background-size: 100% 100%;
     }
   }
