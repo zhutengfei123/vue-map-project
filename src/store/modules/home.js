@@ -3,8 +3,8 @@ import Api from '../../api'
 const state = {
   initData: {},
   numData: null,
-  checkinNum: {},
-  checkoutNum: {},
+  checkinNum: null,
+  checkoutNum: null,
   checkData: [],
   sensitiveData: [],
   crimeData: [],

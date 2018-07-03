@@ -7,7 +7,7 @@
       <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" ></bm-point-collection>
     </baidu-map>
     <transition name="el-zoom-in-left">
-      <left-panel :offset="leftBoxOffset" :style="`left:${leftBoxOffset}px;`" class="left-panel" @changeStatus="handleChangeStatus"/>
+      <left-panel :memberChartInfo="memberChartInfo" :numData="numData" :checkinNum="checkinNum" :checkoutNum="checkoutNum" :offset="leftBoxOffset" :style="`left:${leftBoxOffset}px;`" class="left-panel" @changeStatus="handleChangeStatus"/>
     </transition>
     <transition name="el-zoom-in-right">
       <right-panel :data="dataInfo" :offset="rightBoxOffset" :style="`right:${rightBoxOffset}px;`" class="right-panel" @changeStatus="handleChangeStatus"/>
