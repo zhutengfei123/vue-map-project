@@ -30,9 +30,19 @@ const IndexState = namespace('index', State)
 export default class Index extends Vue {
   @IndexAction init
   @IndexAction getNum
+  @IndexAction getCheckinNum
+  @IndexAction getCheckoutNum
+  @IndexAction getCheckData
+  @IndexAction getSensitiveData
+  @IndexAction getCrimeData
   @IndexAction getMemberChartInfo
   @IndexState initData
   @IndexState numData
+  @IndexState checkinNum
+  @IndexState checkoutNum
+  @IndexState checkData
+  @IndexState sensitiveData
+  @IndexState crimeData
   @IndexState memberChartInfo
   loading = false
   leftBoxOffset = -300
@@ -124,6 +134,11 @@ export default class Index extends Vue {
     }, 2000)
     this.initGetNum()
     this.initMemberChartInfo()
+    this.getCheckinNum()
+    this.getCheckoutNum()
+    this.getCheckData({pageSize: 5, currentPage: 1})
+    this.getSensitiveData({pageSize: 5, currentPage: 1})
+    this.getCrimeData({pageSize: 5, currentPage: 1})
   }
   handleChangeStatus (a, b) {
     this[a] = b
