@@ -102,12 +102,15 @@ export default class Index extends Vue {
       }
     }
     .block {
+      margin-top: 5%;
       display: inline-block;
-      width: 50%;
+      width: 40%;
       .title {
-        background-color: rgba(76, 108, 157, 0.7);
+        padding: 16px 0;
+        background-color: rgba(76, 108, 157, 0.9);
       }
       .number {
+        padding: 12px 0;
         background-color: rgba(68, 103, 142, 0.7);
       }
     }
