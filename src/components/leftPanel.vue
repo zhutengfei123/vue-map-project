@@ -1,6 +1,24 @@
 <template>
   <div class="left-panel-index">
-    <div class="top-part">{{numData}} {{checkinNum}} {{checkoutNum}}</div>
+    <div class="top-part">
+      <div class="total">共计<span class="number">{{numData}}</span>人</div>
+      <div class="block">
+        <div class="title">
+          刷证通过
+        </div>
+        <div class="number">
+          {{checkinNum}}
+        </div>
+      </div>
+      <div class="block">
+        <div class="title">
+          刷证不通过
+        </div>
+        <div class="number">
+          {{checkoutNum}}
+        </div>
+      </div>
+    </div>
     <div class="bottom-part">
       <chart :options="polar" :auto-resize="true" class="pie-chart"></chart>
       <div class="right-part">
@@ -70,15 +88,35 @@ export default class Index extends Vue {
 </script>
 <style lang="less">
 .left-panel-index {
+  color: white;
   width: 100%;
   .top-part {
+    padding-top: 10%;
     height: 50%;
+    .total {
+      font-size: 16px;
+      .number {
+        font-size: 28px;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+    .block {
+      display: inline-block;
+      width: 50%;
+      .title {
+        background-color: rgba(76, 108, 157, 0.7);
+      }
+      .number {
+        background-color: rgba(68, 103, 142, 0.7);
+      }
+    }
   }
   .bottom-part {
     height: 50%;
     .pie-chart {
       display: inline-block;
-      width: 40%;
+      width: 42%;
       height: 100%;
     }
     .right-part {
@@ -86,7 +124,6 @@ export default class Index extends Vue {
       text-align: left;
       width: 50%;
       height: 70%;
-      color: white;
       vertical-align: bottom;
     }
   }

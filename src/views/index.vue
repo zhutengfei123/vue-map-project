@@ -194,7 +194,7 @@ export default class Index extends Vue {
       position: absolute;
       top: 120px;
       bottom: 120px;
-      background: red;
+      background: rgba(0, 0, 0, 0.6);
       width: 300px;
     }
     .my-btn1, .my-btn2 {
