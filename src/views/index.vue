@@ -229,5 +229,8 @@ export default class Index extends Vue {
     .my-btn2 {
       left: -30px;
     }
+    .BMap_cpyCtrl, .anchorBL {
+      display: none;
+    }
   }
 </style>
