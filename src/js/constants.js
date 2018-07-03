@@ -11,3 +11,20 @@ export const points = [
   {name: '晋荷缘商务酒店', 'lat': 37.816628, 'lng': 112.535319},
   {name: '康裕快捷酒店', 'lat': 37.850776, 'lng': 112.518811},
   {name: '尚优快捷', 'lat': 37.851155, 'lng': 112.527573}]
+
+export const peoples = [{
+  name: '山西',
+  value: 81
+},
+{
+  name: '辽宁',
+  value: 33
+},
+{
+  name: '四川',
+  value: 6
+},
+{
+  name: '河北',
+  value: 3
+}]

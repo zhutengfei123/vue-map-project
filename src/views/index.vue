@@ -6,7 +6,7 @@
       <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
       <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" ></bm-point-collection>
     </baidu-map>
-    <left-panel class="left-panel"/>
+    <left-panel class="left-panel" :memberChartInfo="memberChartInfo"/>
     <right-panel class="right-panel"/>
     <top-panel class="top-panel"/>
   </div>

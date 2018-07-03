@@ -3,7 +3,7 @@ import Api from '../../api'
 const state = {
   initData: {},
   numData: null,
-  memberChartInfo: {}
+  memberChartInfo: []
 }
 const actions = {
   async init ({commit, rootState}, params) {
@@ -16,7 +16,8 @@ const actions = {
   },
   async getMemberChartInfo ({commit, rootState}, params) {
     const result = await axios.get('/api/joreport/data/people', {'params': params})
-    commit('getMemberChartInfo', result)
+    const data = Object.keys(result).map(r => ({name: r, value: result[r]}))
+    commit('getMemberChartInfo', data)
   }
 }
 const mutations = {
