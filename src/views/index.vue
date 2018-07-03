@@ -10,7 +10,7 @@
       <left-panel :offset="leftBoxOffset" :style="`left:${leftBoxOffset}px;`" class="left-panel" @changeStatus="handleChangeStatus"/>
     </transition>
     <transition name="el-zoom-in-right">
-      <right-panel :offset="rightBoxOffset" :style="`right:${rightBoxOffset}px;`" class="right-panel" @changeStatus="handleChangeStatus"/>
+      <right-panel :data="dataInfo" :offset="rightBoxOffset" :style="`right:${rightBoxOffset}px;`" class="right-panel" @changeStatus="handleChangeStatus"/>
     </transition>
     <top-panel class="top-panel"/>
   </div>
@@ -48,6 +48,10 @@ export default class Index extends Vue {
   leftBoxOffset = -300
   rightBoxOffset = -300
   points = points
+  dataInfo = {
+    data1: [],
+    data2: []
+  }
   mapStyle = {
     styleJson: [
       {
@@ -136,8 +140,17 @@ export default class Index extends Vue {
     this.initMemberChartInfo()
     this.getCheckinNum()
     this.getCheckoutNum()
-    this.getCheckData({pageSize: 5, currentPage: 1})
-    this.getSensitiveData({pageSize: 5, currentPage: 1})
+    this.getCheckData({pageSize: 5, currentPage: 1}).then(() => {
+      this.dataInfo.data1 = this.checkData.result
+    }).catch(error => {
+      this.$message.error(error)
+    })
+    this.getSensitiveData({pageSize: 5, currentPage: 1}).then(() => {
+      this.dataInfo.data2 = this.sensitiveData.result
+    }).catch(error => {
+      this.$message.error(error)
+    })
+
     this.getCrimeData({pageSize: 5, currentPage: 1})
   }
   handleChangeStatus (a, b) {
@@ -170,18 +183,22 @@ export default class Index extends Vue {
     height: 100%;
     width: 100%;
     .map {
-      padding: 4% 0;
-      height: 92%;
+      height: 100%;
       width: 100%;
       background-color: #50738a;
     }
     .top-panel {
+      padding: 20px;
+      font-size: 28px;
       position: absolute;
       top: 0;
-      height: 80px;
-      color: white;
-      left: 20%;
-      width: 60%;
+      left: 50%;
+      height: 40px;
+      margin-left: -150px;
+      color: #ffffff;
+      width: 300px;
+      line-height: 40px;
+      text-align: center;
     }
     .left-panel {
       left: -300px;
@@ -190,25 +207,27 @@ export default class Index extends Vue {
       right: -300px;
     }
     .left-panel, .right-panel {
-      // opacity:0.3;
+      opacity: 0.7;
       position: absolute;
-      top: 120px;
-      bottom: 120px;
-      background: red;
+      height: 600px;
+      margin-top: -300px;
+      top: 50%;
+      background: #000;
       width: 300px;
     }
     .my-btn1, .my-btn2 {
       position: absolute;
-      width: 50px;
+      width: 30px;
+      padding: 0;
       height: 100px;
       top: 50%;
       margin-top: -50px;
     }
     .my-btn1 {
-      right: -50px;
+      right: -30px;
     }
     .my-btn2 {
-      left: -50px;
+      left: -30px;
     }
   }
 </style>
