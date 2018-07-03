@@ -26,9 +26,19 @@ const IndexState = namespace('index', State)
 export default class Index extends Vue {
   @IndexAction init
   @IndexAction getNum
+  @IndexAction getCheckinNum
+  @IndexAction getCheckoutNum
+  @IndexAction getCheckData
+  @IndexAction getSensitiveData
+  @IndexAction getCrimeData
   @IndexAction getMemberChartInfo
   @IndexState initData
   @IndexState numData
+  @IndexState checkinNum
+  @IndexState checkoutNum
+  @IndexState checkData
+  @IndexState sensitiveData
+  @IndexState crimeData
   @IndexState memberChartInfo
   loading = false
   showLeftBox = true
