@@ -31,6 +31,8 @@ export default class Index extends Vue {
   @IndexState numData
   @IndexState memberChartInfo
   loading = false
+  showLeftBox = true
+  showRightBox = true
   points = points
   mapStyle = {
     styleJson: [
@@ -172,6 +174,19 @@ export default class Index extends Vue {
       bottom: 120px;
       background: red;
       width: 20%;
+    }
+    .my-btn1, .my-btn2 {
+      position: absolute;
+      width: 50px;
+      height: 100px;
+      top: 50%;
+      margin-top: -50px;
+    }
+    .my-btn1 {
+      right: -50px;
+    }
+    .my-btn2 {
+      left: -50px;
     }
   }
 </style>

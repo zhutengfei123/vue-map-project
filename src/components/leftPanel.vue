@@ -1,25 +1,29 @@
 <template>
-  <div class="left-panel-index">
-    <div class="top-part">left-panel</div>
-    <div class="bottom-part">
+  <transition name="el-zoom-in-left">
+    <div v-show="showLeftBox" class="left-panel-index">
+      <h1>left-panel</h1>
       <chart :options="polar" :auto-resize="true" class="pie-chart"></chart>
-      <div class="right-part">
-        <div :key="index" v-for="(item, index) in peoples">{{item.name+'，'+item.value}}</div>
-      </div>
+      <el-button class="my-btn1" @click="showLeftBox=!showLeftBox">
+        <i class="el-icon-arrow-right"></i>
+      </el-button>
     </div>
-  </div>
+  </transition>
 </template>
 <script>
 import { Vue } from 'vue-property-decorator'
-import { peoples } from '../js/constants.js'
 
 export default class Index extends Vue {
-  peoples = peoples;
+  showLeftBox = true
   polar = {
-    // grid: { width: "20%" },
+    grid: {width: '20%'},
     tooltip: {
       trigger: 'item',
       formatter: '{a} <br/>{b}: {c} ({d}%)'
+    },
+    legend: {
+      orient: 'vertical',
+      x: 'right',
+      data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
     },
     series: [
       {
@@ -45,33 +49,23 @@ export default class Index extends Vue {
             show: false
           }
         },
-        data: peoples
+        data: [
+          {value: 335, name: '直接访问'},
+          {value: 310, name: '邮件营销'},
+          {value: 234, name: '联盟广告'},
+          {value: 135, name: '视频广告'},
+          {value: 1548, name: '搜索引擎'}
+        ]
       }
     ]
-  };
+  }
 }
 </script>
 <style lang="less">
-.left-panel-index {
-  width: 100%;
-  .top-part {
-    height: 50%;
-  }
-  .bottom-part {
-    height: 50%;
+  .left-panel-index {
+    width: 100%;
     .pie-chart {
-      display: inline-block;
-      width: 40%;
-      height: 100%;
-    }
-    .right-part {
-      display: inline-block;
-      text-align: left;
-      width: 50%;
-      height: 70%;
-      color: white;
-      vertical-align: bottom;
+        width: 100%;
     }
   }
-}
 </style>
