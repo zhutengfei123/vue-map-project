@@ -44,6 +44,8 @@ const actions = {
     const data = Object.keys(result).map(r => ({name: r, value: result[r]}))
     commit('getMemberChartInfo', data)
   }
+  // 获取图片的url
+  // http://9ji-tech.com:8880/joreport/img?terminal_id=ccb8a8de46d0&pic_name=1530548020543.jpg
 }
 const mutations = {
   getInitData (state, data) {

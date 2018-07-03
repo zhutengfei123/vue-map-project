@@ -130,6 +130,11 @@ export default class Index extends Vue {
     }, 2000)
     this.initGetNum()
     this.initMemberChartInfo()
+    this.getCheckinNum()
+    this.getCheckoutNum()
+    this.getCheckData({pageSize: 5, currentPage: 1})
+    this.getSensitiveData({pageSize: 5, currentPage: 1})
+    this.getCrimeData({pageSize: 5, currentPage: 1})
   }
   initMemberChartInfo () {
     const params = {}
