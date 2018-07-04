@@ -20,6 +20,7 @@
       </div>
     </div>
     <div class="bottom-part">
+       <div class="title">人员来源统计图</div>
       <chart :options="polar" :auto-resize="true" class="pie-chart"></chart>
       <div class="right-part">
         <div :key="index" v-for="(item, index) in memberChartInfo">{{item.name+'，'+item.value}}</div>
@@ -117,17 +118,20 @@ export default class Index extends Vue {
   }
   .bottom-part {
     height: 50%;
+    .title {
+      font-size: 18px;
+    }
     .pie-chart {
       display: inline-block;
-      width: 42%;
-      height: 100%;
+      width: 50%;
+      height: 50%;
     }
     .right-part {
       display: inline-block;
       text-align: left;
-      width: 50%;
-      height: 70%;
-      vertical-align: bottom;
+      width: 40%;
+      height: 60%;
+      vertical-align: middle;
     }
   }
 }
