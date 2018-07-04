@@ -1,29 +1,31 @@
 <template>
   <div class="left-panel-index">
-    <div class="top-part">
-      <div class="total">共计<span class="number">{{numData}}</span>人</div>
-      <div class="block">
-        <div class="title">
-          刷证通过
+    <div class="left-con">
+      <div class="top-part">
+        <div class="total">共计<span class="number">{{numData}}</span>人</div>
+        <div class="block">
+          <div class="title">
+            刷证通过
+          </div>
+          <div class="number">
+            {{checkinNum}}
+          </div>
         </div>
-        <div class="number">
-          {{checkinNum}}
+        <div class="block">
+          <div class="title">
+            刷证不通过
+          </div>
+          <div class="number">
+            {{checkoutNum}}
+          </div>
         </div>
       </div>
-      <div class="block">
-        <div class="title">
-          刷证不通过
+      <div class="bottom-part">
+        <div class="title">人员来源统计图</div>
+        <chart :options="polar" :auto-resize="true" class="pie-chart"></chart>
+        <div class="right-part">
+          <div :key="index" v-for="(item, index) in memberChartInfo">{{item.name+'，'+item.value}}</div>
         </div>
-        <div class="number">
-          {{checkoutNum}}
-        </div>
-      </div>
-    </div>
-    <div class="bottom-part">
-       <div class="title">人员来源统计图</div>
-      <chart :options="polar" :auto-resize="true" class="pie-chart"></chart>
-      <div class="right-part">
-        <div :key="index" v-for="(item, index) in memberChartInfo">{{item.name+'，'+item.value}}</div>
       </div>
     </div>
     <el-button class="my-btn1" @click="$emit('changeStatus','leftBoxOffset',offset===0?-300:0)">
@@ -80,20 +82,22 @@ export default class Index extends Vue {
       ]
     }
   }
-  created () {
-    console.log('1121', this.checkoutNum)
-
-    console.warn('ddd', this.polar)
-  }
 }
 </script>
 <style lang="less">
 .left-panel-index {
   color: white;
   width: 100%;
+  .left-con {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
   .top-part {
     padding-top: 10%;
-    height: 50%;
+    height: 30%;
     .total {
       font-size: 16px;
       .number {
