@@ -1,6 +1,6 @@
 <template>
   <div class="top-panel-index">
-    <h1>top-panel</h1>
+    太原市人证核验平台
   </div>
 </template>
 <style lang="less">

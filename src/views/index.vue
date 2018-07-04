@@ -1,13 +1,17 @@
 <template>
-  <div class="index">
+  <div class="index" v-loading="loading">
     <baidu-map class="map" center="太原市" :scroll-wheel-zoom='true' :mapStyle="mapStyle">
       <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
       <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
       <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
-      <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" color="red" ></bm-point-collection>
+      <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_STAR" size="BMAP_POINT_SIZE_HUGE" color="red" ></bm-point-collection>
     </baidu-map>
-    <left-panel class="left-panel"/>
-    <right-panel class="right-panel"/>
+    <transition name="el-zoom-in-left">
+      <left-panel :memberChartInfo="memberChartInfo" :numData="numData" :checkinNum="checkinNum" :checkoutNum="checkoutNum" :offset="leftBoxOffset" :style="`left:${leftBoxOffset}px;`" class="left-panel" @changeStatus="handleChangeStatus"/>
+    </transition>
+    <transition name="el-zoom-in-right">
+      <right-panel :data="dataInfo" :offset="rightBoxOffset" :style="`right:${rightBoxOffset}px;`" class="right-panel" @changeStatus="handleChangeStatus"/>
+    </transition>
     <top-panel class="top-panel"/>
   </div>
 </template>
@@ -25,8 +29,29 @@ const IndexState = namespace('index', State)
 })
 export default class Index extends Vue {
   @IndexAction init
+  @IndexAction getNum
+  @IndexAction getCheckinNum
+  @IndexAction getCheckoutNum
+  @IndexAction getCheckData
+  @IndexAction getSensitiveData
+  @IndexAction getCrimeData
+  @IndexAction getMemberChartInfo
   @IndexState initData
+  @IndexState numData
+  @IndexState checkinNum
+  @IndexState checkoutNum
+  @IndexState checkData
+  @IndexState sensitiveData
+  @IndexState crimeData
+  @IndexState memberChartInfo
+  loading = false
+  leftBoxOffset = -300
+  rightBoxOffset = -300
   points = points
+  dataInfo = {
+    data1: [],
+    data2: []
+  }
   mapStyle = {
     styleJson: [
       {
@@ -106,34 +131,50 @@ export default class Index extends Vue {
       }
     ]
   }
-  methods = {
-    clickHandler (e) {
-      alert(`单击点${e.point.name}的坐标为：${e.point.lng}, ${e.point.lat}`)
-    }
+  created () {
+    this.loading = true
+    setTimeout(() => {
+      this.loading = false
+    }, 2000)
+    this.initGetNum()
+    this.initMemberChartInfo()
+    this.getCheckinNum()
+    this.getCheckoutNum()
+    this.getCheckData({pageSize: 5, currentPage: 1}).then(() => {
+      this.dataInfo.data1 = this.checkData.result
+    }).catch(error => {
+      this.$message.error(error)
+    })
+    this.getSensitiveData({pageSize: 5, currentPage: 1}).then(() => {
+      this.dataInfo.data2 = this.sensitiveData.result
+    }).catch(error => {
+      this.$message.error(error)
+    })
+
+    this.getCrimeData({pageSize: 5, currentPage: 1})
   }
-  // created () {
-  //   const params = {
-  //     shopperId: '',
-  //     userType: 'parentShop',
-  //     shopperPid: 9355,
-  //     payModels: '0,1',
-  //     startTime: '2018-04-01',
-  //     endTime: '2018-04-17',
-  //     shopperIds: '',
-  //     reportType: 'date',
-  //     pageNum: 1,
-  //     pageSize: 20
-  //   }
-  //   this.init(params).then(msg => {
-  //     if (msg) {
-  //       this.$message.warning(msg)
-  //     } else {
-  //       console.log('initData', this.initData)
-  //     }
-  //   }).catch(error => {
-  //     this.$message.error(error)
-  //   })
-  // }
+  handleChangeStatus (a, b) {
+    this[a] = b
+  }
+  initMemberChartInfo () {
+    const params = {}
+    this.getMemberChartInfo(params).then(() => {
+      console.log('memberChartInfo', this.memberChartInfo)
+    }).catch(error => {
+      this.$message.error(error)
+    })
+  }
+  clickHandler (e) {
+    alert(`单击点${e.point.name}的坐标为：${e.point.lng}, ${e.point.lat}`)
+  }
+  initGetNum () {
+    const params = {}
+    this.getNum(params).then(() => {
+      console.log('numData', this.numData)
+    }).catch(error => {
+      this.$message.error(error)
+    })
+  }
 }
 </script>
 <style lang="less">
@@ -144,33 +185,52 @@ export default class Index extends Vue {
     .map {
       height: 100%;
       width: 100%;
+      background-color: #50738a;
     }
-
     .top-panel {
+      padding: 20px;
+      font-size: 28px;
       position: absolute;
       top: 0;
-      height: 80px;
-      background: blue;
-      left: 100px;
-      right: 100px;
-      margin-left: auto;
-      margin-right: auto;
-      opacity:0.3;
+      left: 50%;
+      height: 40px;
+      margin-left: -150px;
+      color: #ffffff;
+      width: 300px;
+      line-height: 40px;
+      text-align: center;
     }
     .left-panel {
-      left: 50px;
+      left: -300px;
     }
     .right-panel {
-      right: 50px;
+      right: -300px;
     }
     .left-panel, .right-panel {
-      // opacity:0.3;
+      opacity: 0.7;
       position: absolute;
-      top: 120px;
-      bottom: 120px;
-      background: red;
+      height: 600px;
+      margin-top: -300px;
+      top: 50%;
+      background: #000;
       width: 300px;
-      // height: 800px;
+    }
+    .my-btn1, .my-btn2 {
+      position: absolute;
+      width: 30px;
+      padding: 0;
+      height: 100px;
+      top: 50%;
+      margin-top: -50px;
+    }
+    .my-btn1 {
+      right: -30px;
+    }
+    .my-btn2 {
+      left: -30px;
+    }
+    .BMap_cpyCtrl, .anchorBL {
+      display: none;
     }
   }
 </style>

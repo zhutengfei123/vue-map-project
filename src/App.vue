@@ -16,6 +16,8 @@ export default class App extends Vue {}
   color: #2c3e50;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
   .el-main {
     line-height: initial;
     text-align: initial;

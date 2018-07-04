@@ -29,7 +29,7 @@
     "babel-preset-stage-2": "^6.22.0",
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.28.0",
+    "css-loader": "^0.28.11",
     "element-ui": "^2.3.4",
     "es6-promise": "^4.2.4",
     "eslint": "^4.15.0",
