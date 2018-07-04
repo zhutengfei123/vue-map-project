@@ -5,7 +5,7 @@
     </el-button>
     <div class="right-con">
       <div v-for="(item,index) in data.data2" :key="index">
-        <p class="right-con-title">犯罪人{{index+1}}：</p>
+        <p class="right-con-title">敏感区域{{index+1}}：</p>
         <p>犯罪类型：{{item.crimeType}}</p>
         <p>犯罪方式：{{item.crimeWays}}</p>
         <p>犯罪描述：{{item.crimeDec}}</p>
@@ -17,7 +17,7 @@
         <p>终端id：{{item.terminalId}}</p>
       </div>
       <div v-for="(item,index) in data.data1" :key="index+6">
-        <p class="right-con-title">犯罪人{{index+6}}：</p>
+        <p class="right-con-title">敏感区域{{index+6}}：</p>
         <p>犯罪类型：{{item.crimeType}}</p>
         <p>犯罪方式：{{item.crimeWays}}</p>
         <p>犯罪描述：{{item.crimeDec}}</p>
