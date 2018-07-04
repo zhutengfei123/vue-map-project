@@ -4,7 +4,7 @@
       <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
       <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
       <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
-      <bm-point-collection :points="points" shape="BMAP_POINT_SIZE_NORMAL" size="BMAP_POINT_SIZE_HUGE" color="red" ></bm-point-collection>
+      <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_CIRCLE" size="BMAP_POINT_SIZE_SMALL" color="red" ></bm-point-collection>
     </baidu-map>
     <transition name="el-zoom-in-left">
       <left-panel :memberChartInfo="memberChartInfo" :numData="numData" :checkinNum="checkinNum" :checkoutNum="checkoutNum" :offset="leftBoxOffset" :style="`left:${leftBoxOffset}px;`" class="left-panel" @changeStatus="handleChangeStatus"/>
