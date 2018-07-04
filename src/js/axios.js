@@ -1,7 +1,10 @@
 import axios from 'axios'
 import qs from 'qs'
+
+console.log('process.env.NODE_ENV')
+const baseURL = process.env.NODE_ENV === 'development' ? '/' : 'http://9ji-tech.com:8880/'
 const Axios = axios.create({
-  baseURL: '/',
+  baseURL,
   timeout: 10000,
   responseType: 'json',
   withCredentials: true,
