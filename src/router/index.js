@@ -3,8 +3,8 @@ import Router from 'vue-router'
 const Index = () => import('@/views')
 Vue.use(Router)
 const router = new Router({
-  hashbang: false,
-  mode: 'history',
+  // hashbang: false,
+  mode: 'hash',
   routes: [
     {
       path: '/',

@@ -6,10 +6,10 @@
       <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
       <bm-point-collection :points="points" shape="BMAP_POINT_SHAPE_CIRCLE" size="BMAP_POINT_SIZE_SMALL" color="red" ></bm-point-collection>
     </baidu-map>
-    <transition name="el-zoom-in-left">
+    <transition :name="leftBoxOffset===0?'el-zoom-in-left':'el-zoom-in-right'">
       <left-panel :memberChartInfo="memberChartInfo" :numData="numData" :checkinNum="checkinNum" :checkoutNum="checkoutNum" :offset="leftBoxOffset" :style="`left:${leftBoxOffset}px;`" class="left-panel" @changeStatus="handleChangeStatus"/>
     </transition>
-    <transition name="el-zoom-in-right">
+    <transition :name="rightBoxOffset===0?'el-zoom-in-right':'el-zoom-in-left'">
       <right-panel :data="dataInfo" :offset="rightBoxOffset" :style="`right:${rightBoxOffset}px;`" class="right-panel" @changeStatus="handleChangeStatus"/>
     </transition>
     <top-panel class="top-panel"/>
